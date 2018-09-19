@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Products"
+    targetNamespace="http://tempuri.org/Products.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/Products.xsd"
+    xmlns:mstns="http://tempuri.org/Products.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="Products">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Product">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Description" minOccurs="1" maxOccurs="1" type="xs:string"/>
+              <xs:element name="CC" minOccurs="1" maxOccurs="1" type="xs:int"/>
+              <xs:element name="colors">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="color" maxOccurs="unbounded" type="xs:string" />
+                  </xs:sequence> 
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Id" type="xs:integer"/>
+            <xs:attribute name="Name" type="xs:string"/>
+            <xs:attribute name="Company" type="xs:string"/>
+            <xs:attribute name="IsFourStroke" type="xs:boolean"/>
+            <xs:attribute name="Type" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

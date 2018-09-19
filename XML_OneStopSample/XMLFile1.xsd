@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Products">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="Product">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="description"/>
+              <xs:element name="CC">
+                <xs:simpleType>
+                  <xs:restriction base="xs:integer">
+                    <xs:maxInclusive value="220"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="colors">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="color" maxOccurs="unbounded" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <!--<xs:element  name="residentialaddress" type="ResidentialAddress" minOccurs="0" maxOccurs="1"/>
+              <xs:element  name="officeaddress" type="OfficeAddress" minOccurs="0" maxOccurs="1"/>-->
+              <xs:element ref="Address" minOccurs="0" maxOccurs="1" />
+            </xs:all>
+            <xs:attribute name="Id" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="Name" type="xs:string" use="required" />
+            <xs:attribute ref="Company" use="required"/>
+            <xs:attribute name="IsFourStroke" type="xs:string" use="required" />
+            <xs:attribute name="Type" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!--Using Enum for setting the values allowed by an attribute-->
+  <xs:attribute name="Company">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="TVS"/>
+        <xs:enumeration value="Honda"/>
+        <xs:enumeration value="Hero"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  
+  <!--Defining a ComplexType which can be reused in multiple places-->
+  <xs:element name="Address">
+    <xs:complexType>
+      <xs:sequence>
+        <!--Using the existingtype 'ResidentialAddress' and 'OfficeAddress'-->
+        <xs:element name="ResidentialAddress" type="ResidentialAddress" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="OfficeAddress" type="OfficeAddress" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!--Extending an existingtype 'AddressDetails'-->
+  <xs:complexType name="ResidentialAddress">
+    <xs:complexContent>
+      <!--Using a complextype 'AddressDetails' as base-->
+      <xs:extension base="AddressDetails">
+        <xs:sequence>
+          <xs:element name="HouseNo" type="xs:integer"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!--Extending an existing type-->
+  <xs:complexType name="OfficeAddress">
+    <xs:complexContent>
+      <!--Using a complextype 'AddressDetails' as base-->
+      <xs:extension base="AddressDetails">
+        <xs:sequence>
+          <xs:element name="CompanyName"/>
+          <xs:element name="BuildingName"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <!--Defining a complextype which can be used multiple places-->
+  <xs:complexType name="AddressDetails">
+    <xs:sequence>
+      <xs:element name="StreeName"/>
+      <xs:element name="Area"/>
+      <xs:element name="PinCode"/>
+      <xs:element name="City"/>
+      <xs:element name="State"/>
+      <xs:element name="Country"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  
+</xs:schema>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Products>
+  <Product Id="1" Name="Shine" Company="Honda" IsFourStroke="True" Type="Bike">
+    <description></description>
+    <!--<CC>110</CC>-->
+    <colors>
+      <color>Black</color>
+      <color>Grey</color>
+      <color>Silver</color>
+    </colors>
+  </Product>
+  <Product Id="2"  Company="TVS" IsFourStroke="False" Type="Scooter">
+    <description></description>
+    <CC>110</CC>
+    <colors>
+      <color>Black</color>
+      <color>Blue</color>
+      <color>Brown</color>
+    </colors>
+  </Product>
+</Products>
